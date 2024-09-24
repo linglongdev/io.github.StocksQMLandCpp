@@ -1,0 +1,28 @@
+version: "1"
+
+package:
+  id: io.github.StocksQMLandCpp
+  name: StocksQMLandCpp
+  version: 0.0.0.1
+  kind: app
+  description: |
+    Basic application that shows multiple time series in a chart
+
+command:
+  - /opt/apps/io.github.StocksQMLandCpp/files/bin/StocksQMLandCpp
+
+base: org.deepin.foundation/23.0.0
+runtime: org.deepin.Runtime/23.0.1
+
+sources:
+  - kind: git
+    url: https://github.com/hansellb/StockChartQMLandCpp.git
+    version: master
+    commit: 729d99db3dab400f2babb7257fe85dda13ae6944
+
+build: |
+  cd /project/linglong/sources/StockChartQMLandCpp.git
+  git apply ../../../0001-install.patch
+  qmake -makefile PREFIX=${PREFIX} LIB_INSTALL_DIR=${PREFIX}/lib/${TRIPLET}
+  make -j$(nproc)
+  make install

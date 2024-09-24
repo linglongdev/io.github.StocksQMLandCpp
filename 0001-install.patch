@@ -1,0 +1,54 @@
+From 4b7d47ce314821449e5de86f47f3cae9710210a1 Mon Sep 17 00:00:00 2001
+From: wjyrich <1071633242@qq.com>
+Date: Mon, 16 Sep 2024 15:09:29 +0800
+Subject: [PATCH] install
+
+---
+ StocksQMLandCpp.pro          | 10 +++++++++-
+ html/StocksQMLandCpp.desktop | 11 +++++++++++
+ 2 files changed, 20 insertions(+), 1 deletion(-)
+ create mode 100644 html/StocksQMLandCpp.desktop
+
+diff --git a/StocksQMLandCpp.pro b/StocksQMLandCpp.pro
+index 586c1f1..f6f181d 100644
+--- a/StocksQMLandCpp.pro
++++ b/StocksQMLandCpp.pro
+@@ -27,8 +27,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
+ 
+ # Default rules for deployment.
+ qnx: target.path = /tmp/$${TARGET}/bin
+-else: unix:!android: target.path = /opt/$${TARGET}/bin
++else: unix:!android: #target.path = /opt/$${TARGET}/bin
+ !isEmpty(target.path): INSTALLS += target
+ 
++target.path = $$PREFIX/bin
++desktop.files = html/StocksQMLandCpp.desktop
++desktop.path = $$PREFIX/share/applications/
++icons.path = $$PREFIX/share/icons/hicolor/apps/
++icons.files = html/sync_on.png
++
++INSTALLS += target desktop icons
++
+ HEADERS += \
+     stockchart.h
+diff --git a/html/StocksQMLandCpp.desktop b/html/StocksQMLandCpp.desktop
+new file mode 100644
+index 0000000..fcb999b
+--- /dev/null
++++ b/html/StocksQMLandCpp.desktop
+@@ -0,0 +1,11 @@
++[Desktop Entry]
++Categories=Accessibility;Qt;Utility;
++Exec=StocksQMLandCpp
++Name=StocksQMLandCpp
++Name[zh_CN]=StocksQMLandCpp
++Icon=sync_on
++StartupNotify=false
++Terminal=false
++Type=Application
++GenericName=StocksQMLandCpp
++Version=1.0
+\ No newline at end of file
+-- 
+2.43.4
+
